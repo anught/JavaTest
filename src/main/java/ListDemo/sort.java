@@ -45,6 +45,8 @@ public class sort {
 //			}
 //		});
 		
+
+		
 		System.out.println(list.toString());
 		
 		Collections.sort(list, (v1, v2) -> (v1.name.compareTo(v2.name)));
