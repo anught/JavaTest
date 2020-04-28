@@ -31,8 +31,7 @@ public class HikariDemo {
         Connection conn = null;
         Statement statement = null;
         ResultSet rs = null;
-        try{
-            
+        try{            
             //创建connection
             conn = ds.getConnection();
             statement = conn.createStatement();
