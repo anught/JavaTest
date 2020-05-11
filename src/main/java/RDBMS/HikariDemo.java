@@ -26,6 +26,10 @@ public class HikariDemo {
         hikariConfig.addDataSourceProperty("cachePrepStmts", "true");
         hikariConfig.addDataSourceProperty("prepStmtCacheSize", "250");
         hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        
+        hikariConfig.setIdleTimeout(10*1000);//空闲连接退出时间时间
+        hikariConfig.setValidationTimeout(10*1000);
+       
  
         HikariDataSource ds = new HikariDataSource(hikariConfig);
         Connection conn = null;
