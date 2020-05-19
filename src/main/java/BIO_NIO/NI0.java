@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class NI0 {
 	//内核支持NIO 体现在两个方面  再accept 和 read两个地方都不阻塞
 	//None blocking
-	//new IO
+	//new IO  channel byetBuffer Selector(多路复用器)
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		socketNIO();
@@ -26,11 +26,10 @@ public class NI0 {
 		ss.configureBlocking(false);//非阻塞
 		
 		int num = 0;
-		ByteBuffer buffer = ByteBuffer.allocateDirect(4096);//堆外缓存 也可以堆内
+		ByteBuffer buffer = ByteBuffer.allocateDirect(4);//堆外缓存 也可以堆内
 		while(true) {
 			Thread.sleep(1000);
-			SocketChannel cli = ss.accept();//此处不阻塞
-			
+			SocketChannel cli = ss.accept();//此处不阻塞			
 			if(cli == null) {
 				System.out.println("... ... ");				
 			} else {
@@ -40,7 +39,7 @@ public class NI0 {
 			}
 			
 			for(SocketChannel c: listCli) {
-				num = c.read(buffer);
+				num = c.read(buffer); // 0 -1 >0 
 				if(num > 0) {
 					buffer.flip();//将指针指向开始；并标记读到数据的最后的位置
 					byte[] aaa = new byte[buffer.limit()];
