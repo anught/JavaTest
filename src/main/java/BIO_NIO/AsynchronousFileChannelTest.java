@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
  * */
 public class AsynchronousFileChannelTest {
 	public static void main(String[] args) throws IOException {
-		write3();
+		write();
 		System.in.read();
 
 	}
@@ -77,7 +77,7 @@ public class AsynchronousFileChannelTest {
 		// AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(path,
 		// StandardOpenOption.APPEND);
 
-		AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(path, StandardOpenOption.WRITE);
+		AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(path, StandardOpenOption.APPEND);
 
 		ByteBuffer buffer = ByteBuffer.allocate(1024);
 		long position = 0;
