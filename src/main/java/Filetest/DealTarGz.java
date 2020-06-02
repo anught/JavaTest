@@ -96,10 +96,13 @@ public class DealTarGz {
 		while ((tarArchiveEntry = tais.getNextTarEntry()) != null) {
 			String name = tarArchiveEntry.getName();
 			File tarFile = new File(parentPath, name);
+			if (tarArchiveEntry.isDirectory()) {
+				tarFile.mkdir();
+				continue;
+			}
 			if (!tarFile.getParentFile().exists()) {
 				tarFile.getParentFile().mkdirs();
 			}
-
 			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(tarFile));
 
 			int read = -1;
