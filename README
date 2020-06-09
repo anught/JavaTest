@@ -1,0 +1,30 @@
+本工程是java基础的各种测试代码
+
+1、BIO_NIO
+    二者对比及测试代码
+2、ClassTest
+    使用反射方式进行类的创建的测试
+3、ENUM
+    枚举类型的使用
+4、Filetest
+   文件操作
+5、JedisTest
+6、ListDemo
+  list排序方式
+7、Map
+  map的创建和循环删除
+8、OverrideTest
+  测试重写hashcode的必要性
+9、RDBMSTest
+  测试关系型数据库的连接 及线程池的使用
+10、ReferenceType
+  四种引用类型 强软弱虚
+  
+11、SerializeDemo
+  序列化测试
+12、SFTPTest
+  sftp client 
+13、StringTest
+
+14、syncTest
+  四种synchronized
