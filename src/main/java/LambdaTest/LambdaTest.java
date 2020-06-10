@@ -13,6 +13,16 @@ import java.util.function.Supplier;
  * @create: 2019-10-19 15:11
  */
 public class LambdaTest {
+
+	public static void testHandInterface() {
+		FunctionMutiParms fmp = (str1, str2) -> {
+			return false;
+		};
+
+		System.out.println("fmp:" + fmp.isStrVaild("", ""));
+
+	}
+
 	public static void function() {
 		/*
 		 * 在Java中提供了一系列的函数式接口，用来接受后续传入的逻辑，但是对输入和输出有要求
@@ -23,6 +33,15 @@ public class LambdaTest {
 			return str.length();
 		};
 		System.out.println(f1.apply("abcdefg"));
+
+		Function<String, Boolean> f2 = (str) -> {
+			if (str != null && str.length() > 0) {
+				return true;
+			}
+			return false;
+		};
+
+		System.out.println("f2:" + f2.apply(""));
 
 		// 只有输出
 		Supplier<String> s1 = () -> {
@@ -45,7 +64,7 @@ public class LambdaTest {
 
 		Predicate<String> predicate1 = p -> p.length() > 0;
 		try {
-			System.out.println(predicate1.test(null));
+			System.out.println(predicate1.test("f"));
 		} catch (Exception e) {
 			// e.printStackTrace();
 		}
@@ -54,7 +73,8 @@ public class LambdaTest {
 
 	public static void main(String[] args) throws Exception {
 		function();
-
+		testHandInterface();
+		System.in.read();
 //        Runnable runnable = new Runnable() {
 //            @Override
 //            public void run() {
