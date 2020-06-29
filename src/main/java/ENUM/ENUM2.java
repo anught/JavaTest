@@ -11,5 +11,10 @@ public enum ENUM2 {
 
 	public String getName() {
 		return this.name;
+
+	}
+
+	public void show() {
+		ENUM2[] ee = values();
 	}
 }
