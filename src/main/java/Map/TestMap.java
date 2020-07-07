@@ -3,7 +3,7 @@ package Map;
 public class TestMap {
 	public static void main(String[] args) {
 		printBit(3 * 16);
-		printBit(3);
+		printBit(3 << 29);
 	}
 
 	static final int MAXIMUM_CAPACITY = 1 << 30;

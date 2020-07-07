@@ -1,7 +1,8 @@
-package syncTest;
+package ThreadTest.SyncTest;
 
-public class syncTest1 {
-	public synchronized void m1() {
+public class syncTest2 {
+
+	public static synchronized void m1() {
 		System.out.println("m1 start");
 		
 		try {
@@ -15,7 +16,7 @@ public class syncTest1 {
 		
 	}
 	
-	public synchronized void m2() {
+	public static synchronized void m2() {
 		System.out.println("m2 start");
 		
 		try {
@@ -29,16 +30,17 @@ public class syncTest1 {
 	}
 	
 	public static void main(String[] args) {
-		syncTest1 t1 = new syncTest1();
-		
+		syncTest2 t1 = new syncTest2();
+		syncTest2 t2 = new syncTest2();
 		new Thread(()->{
 			t1.m1();			
 		}).start();
 		
 		new Thread(()->{
-			t1.m2();			
+			t2.m2();			
 		}).start();
 		
 	}
 	
+
 }

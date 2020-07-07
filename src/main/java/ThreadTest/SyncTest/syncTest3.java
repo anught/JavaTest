@@ -1,13 +1,15 @@
-package syncTest;
+package ThreadTest.SyncTest;
 
-public class syncTest2 {
+public class syncTest3 {
 
-	public static synchronized void m1() {
+	public  void m1() {
 		System.out.println("m1 start");
 		
 		try {
-			System.out.println("m1 execute");
-			Thread.sleep(2000);
+			synchronized(this) {
+				System.out.println("m1 execute");
+				Thread.sleep(2000);	
+			}
 			System.out.println("m1 execute end");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -16,12 +18,14 @@ public class syncTest2 {
 		
 	}
 	
-	public static synchronized void m2() {
+	public synchronized void m2() {
 		System.out.println("m2 start");
 		
 		try {
-			System.out.println("m2 execute");
-			Thread.sleep(2000);
+			synchronized(this) {
+				System.out.println("m2 execute");
+				Thread.sleep(2000);	
+			}
 			System.out.println("m2 execute end");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -30,14 +34,14 @@ public class syncTest2 {
 	}
 	
 	public static void main(String[] args) {
-		syncTest2 t1 = new syncTest2();
-		syncTest2 t2 = new syncTest2();
+		syncTest3 t1 = new syncTest3();
+		
 		new Thread(()->{
 			t1.m1();			
 		}).start();
 		
 		new Thread(()->{
-			t2.m2();			
+			t1.m1();			
 		}).start();
 		
 	}
