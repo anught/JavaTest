@@ -15,10 +15,8 @@ public class RunnableDemo implements Runnable {
 	public static void main(String[] args) {
 		RunnableDemo runnableDemo = new RunnableDemo();
 		runnableDemo.name = "lisi";
-
 		Thread thread = new Thread(runnableDemo);
 		Thread thread2 = new Thread(runnableDemo);
-
 		thread.start();
 		thread2.start();
 

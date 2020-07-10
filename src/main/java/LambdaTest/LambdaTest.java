@@ -1,12 +1,17 @@
 package LambdaTest;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 /**
  * @author: 马士兵教育
@@ -23,7 +28,23 @@ public class LambdaTest {
 
 	}
 
-	public static void function() {
+	public static void m1() {
+		List<String> l = Arrays.asList("asdf111", "zfw2e", "22");
+		Collections.sort(l, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				// TODO Auto-generated method stub
+				return o1.length() - o2.length();
+			}
+		});
+		l.forEach(System.out::println);
+
+		Collections.sort(l, (a, b) -> b.length() - a.length());
+
+		l.forEach(System.out::println);
+	}
+
+	public static void m2() {
 		/*
 		 * 在Java中提供了一系列的函数式接口，用来接受后续传入的逻辑，但是对输入和输出有要求
 		 */
@@ -35,10 +56,7 @@ public class LambdaTest {
 		System.out.println(f1.apply("abcdefg"));
 
 		Function<String, Boolean> f2 = (str) -> {
-			if (str != null && str.length() > 0) {
-				return true;
-			}
-			return false;
+			return (str != null && str.length() > 0) ? true : false;
 		};
 
 		System.out.println("f2:" + f2.apply(""));
@@ -54,8 +72,10 @@ public class LambdaTest {
 		// 只有输入
 		Consumer<String> c11 = (str) -> System.out.println(str);
 		c11.accept("beijing");
-		System.out.println("---------------");
 
+		System.out.println("---------------");
+		BiConsumer<String, Integer> bc = (str, idx) -> System.out.println(str.length() + idx);
+		bc.accept("a", 5);
 		BiFunction<String, String, Integer> bf = (a, b) -> a.length() + b.length();
 		System.out.println(bf.apply("a", "b"));
 
@@ -69,19 +89,38 @@ public class LambdaTest {
 			// e.printStackTrace();
 		}
 
+		UnaryOperator<Integer> uf2 = (idx) -> idx += 1;
+		uf2.apply(3);
+
+		BiFunction<String, Integer, Boolean> vf = (str, idx) -> {
+			if (str.length() == idx)
+				return true;
+			else
+				return false;
+		};
+
+		BinaryOperator<Integer> bot = (A, B) -> {
+			return A + B;
+		};
+
 	}
 
 	public static void main(String[] args) throws Exception {
-		function();
-		testHandInterface();
-		System.in.read();
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                System.out.println("running1 .....");
-//            }
-//        };
-//        runnable.run();
+		Function<String, Boolean> f2 = (str) -> {
+			return (str != null && str.length() > 0) ? true : false;
+		};
+		System.out.println("f2:" + f2.apply(null));
+		// function();
+		// testHandInterface();
+		// m1();
+		// System.in.read();
+//		Runnable runnable = new Runnable() {
+//			@Override
+//			public void run() {
+//				System.out.println("running1 .....");
+//			}
+//		};
+//		runnable.run();
 //
 //        Runnable runnable2 = ()->{
 //            System.out.println("running2....");
@@ -91,13 +130,13 @@ public class LambdaTest {
 //        Runnable runnable3 = ()-> System.out.println("running3....");
 //        runnable3.run();
 //
-//        Callable<String> c1 = new Callable() {
-//            @Override
-//            public String call() throws Exception {
-//                return "mashibing";
-//            }
-//        };
-//        System.out.println(c1.call());
+//		Callable<String> c1 = new Callable() {
+//			@Override
+//			public String call() throws Exception {
+//				return "mashibing";
+//			}
+//		};
+//		System.out.println(c1.call());
 //
 //        Callable<String> c2 = ()->{return "mashibing2";};
 //        System.out.println(c2.call());
@@ -105,22 +144,21 @@ public class LambdaTest {
 //        Callable<String> c3 = ()->"mashibing3";
 //        System.out.println(c3.call());
 //
-//        StudentDao sd1 = new StudentDao() {
-//            @Override
-//            public void insert(Student student) {
-//                System.out.println("插入学生1");
-//            }
-//        };
-//
-//        StudentDao sd2 = (student)->{
-//            System.out.println("student: "+student);
-//        };
-//
-//        StudentDao sd3 = (Student student)-> System.out.println("student3:"+student);
-//
-//        sd1.insert(new Student());
-//        sd2.insert(new Student());
-//        sd3.insert(new Student());
+		StudentDao sd1 = new StudentDao() {
+			@Override
+			public void insert(Student student) {
+				System.out.println("插入学生1");
+			}
+		};
+		sd1.insert(new Student());
+
+		StudentDao sd2 = (student) -> {
+			System.out.println("student: " + student);
+		};
+		sd2.insert(new Student());
+
+		StudentDao sd3 = (Student student) -> System.out.println("student3:" + student);
+		sd3.insert(new Student());
 //
 //        TeacherDao td1 = new TeacherDao() {
 //            @Override

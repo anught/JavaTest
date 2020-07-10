@@ -1,12 +1,13 @@
 package ThreadTest.BaseThreadTest;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Function;
 
 public class Shunxuahizing {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		m2();
 	}
 
@@ -41,7 +42,7 @@ public class Shunxuahizing {
 
 	}
 
-	public static void m2() {
+	public static void m2() throws InterruptedException, ExecutionException {
 		final Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
