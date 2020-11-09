@@ -149,12 +149,17 @@ public class HTTPCLIENT {
 
 	public String post(String url, Map<String, Object> params) throws IOException {
 		HttpPost httppost = new HttpPost(url);
+
+		httppost.setHeader("", "");
+		httppost.addHeader("", "");
+
 		config(httppost);
 		setPostParams(httppost, params);
 		CloseableHttpResponse response = null;
 		try {
 			response = getHttpClient(url).execute(httppost, HttpClientContext.create());
 			HttpEntity entity = response.getEntity();
+
 			String result = EntityUtils.toString(entity, "utf-8");
 			EntityUtils.consume(entity);
 			return result;
