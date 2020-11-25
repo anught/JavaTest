@@ -3,6 +3,7 @@ package JedisTest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.List;
  
 public class BloomFilter {
@@ -67,6 +68,9 @@ public class BloomFilter {
 //            for (int i = 0; i < len; i++) {
 //                result = seed * result + value.charAt(i);
 //            }
+        	
+        	//return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+        	
         	int result = seed + value.hashCode();
             //System.out.println((cap - 1) & result);
             return (cap - 1) & result;//cap 必须为2的次幂 ，才能用这种方式取余
@@ -75,7 +79,8 @@ public class BloomFilter {
  
 
     public static void main(String[] args) throws IOException {
-    	
+    	HashMap <String,String> h = new HashMap();
+    	h.put(null, null);
         BloomFilter bf = new BloomFilter();
         List<String> strs = new ArrayList<String>();
         strs.add("123456");
