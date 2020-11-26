@@ -19,5 +19,7 @@ public class FileUtilsTest {
 			FileUtils.write(new File("fut"), f.getAbsolutePath() + "\n", "UTF-8", true);
 		}
 
+		FileUtils.moveFile(null, null);
+
 	}
 }
