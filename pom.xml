@@ -99,11 +99,11 @@
     <version>1.2.6</version>
 </dependency>
 <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-<dependency>
-    <groupId>commons-io</groupId>
-    <artifactId>commons-io</artifactId>
-    <version>2.7</version>
-</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.7</version>
+		</dependency>
 
 
     <dependency>
@@ -111,8 +111,12 @@
       <artifactId>jrebloom</artifactId>
       <version>2.0.0</version>
     </dependency>
-
-
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 
