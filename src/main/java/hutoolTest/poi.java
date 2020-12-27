@@ -43,12 +43,10 @@ public class poi {
 
 		// 跳过当前行，既第一行，非必须，在此演示用
 		writer.passCurrentRow();
-
 		// 合并单元格后的标题行，使用默认标题样式
 		// writer.merge(row1.size() - 1, "测试标题");
 
 		writer.merge(0, 0, 0, 3, "阿达", false);
-
 		writer.merge(0, 0, 4, 8, "阿达dd", false);
 
 		// 一次性写出内容，强制输出标题
